@@ -1,0 +1,19 @@
+{
+  "name": "vendor_name/auth",
+  "description": "description",
+  "autoload": {
+    "psr-4": {
+      "App\\" : "app/"
+    }
+  },
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "admin",
+      "email": "email@example.com"
+    }
+  ],
+  "require": {
+  }
+}
