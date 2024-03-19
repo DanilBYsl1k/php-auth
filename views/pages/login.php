@@ -23,10 +23,6 @@ use App\services\Page;
                     <label for="password">Password</label>
                     <input type="password" name="password" placeholder="password" id="password">
                 </div>
-                <label for="remember">
-                    <span>Remember me</span>
-                    <input id="remember" name="remember" type="checkbox">
-                </label>
 
                 <div class="btn">
                     <button type="submit">submit</button>

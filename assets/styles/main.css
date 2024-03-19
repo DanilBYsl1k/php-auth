@@ -10,6 +10,10 @@ body {
     font-family: sans-serif;
 }
 
+main {
+    padding: 20px 0;
+}
+
 ul {
     list-style: none;
     padding: 0;
@@ -62,17 +66,22 @@ input {
 .input-wrapper {
     display: flex;
     flex-direction: column;
-
-    label {
-        padding: 15px 0;
-    }
 }
+
+.input-wrapper label {
+    padding: 15px 0;
+}
+
 /*/ form-auth /*/
 .form-auth {
     border-radius: 20px;
     border: 1px solid black;
     padding: 20px;
     margin-top: 20px;
+}
+
+.form-auth button[type="submit"] {
+    margin: 15px 0;
 }
 
 /*// header //*/

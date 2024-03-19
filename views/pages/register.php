@@ -41,11 +41,6 @@ use App\services\Page;
                     <input type="password" name="password-confirm" placeholder="password" id="password-confirm">
                 </div>
 
-                <label for="remember">
-                    <span>Remember me</span>
-                    <input id="remember" type="checkbox">
-                </label>
-
                 <div class="btn">
                     <button type="submit">submit</button>
                 </div>

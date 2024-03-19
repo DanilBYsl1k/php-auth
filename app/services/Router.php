@@ -27,12 +27,17 @@ class Router
     }
 
     public static function get(string $uri, $class, string $method) {
-
+        self::$list[] = [
+            "uri"      => $uri,
+            "class"    => $class,
+            "method"   => $method,
+            "get"      => true,
+        ];
     }
 
     public static function enable(): void
     {
-        $query = '/'.$_GET['url'];
+        $query = '/'.($_GET['url'] ?? '') ;
 
         foreach (self::$list as $route) {
             if ($route['uri'] === $query ) {
@@ -48,7 +53,12 @@ class Router
                         $action->$method();
                     }
                     die();
-                } else {
+                } elseif(isset($route['get']) && $_SERVER['REQUEST_METHOD'] === 'GET') {
+                    $action = new $route['class'];
+                    $method = $route['method'];
+                    $action->$method();
+                    die();
+                }else {
                     require_once 'views/pages/' . $route['page']. '.php' ;
                     die();
                 }

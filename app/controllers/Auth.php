@@ -71,7 +71,6 @@ class Auth
 
     public function logout() {
          unset($_SESSION['user']);
-
-         Router::redirect('/');
+         Router::redirect('/login');
     }
 }

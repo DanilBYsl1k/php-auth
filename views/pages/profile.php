@@ -17,7 +17,6 @@ use App\services\Page;
 <?php Page::part('nav'); ?>
 
 <main>
-    <h1>Profile</h1>
     <section>
         <div class="container">
             <h2><?php echo $_SESSION['user']['full_name']; ?></h2>
