@@ -17,15 +17,15 @@ use App\services\Page;
             <form class="form-auth" action="">
                 <div class="input-wrapper">
                     <label for="login">Login</label>
-                    <input type="text" placeholder="text" id="login">
+                    <input type="text" name="login" placeholder="text" id="login">
                 </div>
                 <div class="input-wrapper">
                     <label for="password">Password</label>
-                    <input type="password" placeholder="password" id="password">
+                    <input type="password" name="password" placeholder="password" id="password">
                 </div>
                 <label for="remember">
                     <span>Remember me</span>
-                    <input id="remember" type="checkbox">
+                    <input id="remember" name="remember" type="checkbox">
                 </label>
 
                 <div class="btn">

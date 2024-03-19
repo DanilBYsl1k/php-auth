@@ -6,48 +6,62 @@ class Router
 {
     private static array $list = [];
 
-    /**
-     *  метод создания роута в файле router/routes.php
-     * @param $uri
-     * @param $page_name
-     * @return void
-     */
-    public static function page($uri, $page_name): void
+    public static function page(string $uri, string $page_name): void
     {
         self::$list[] = [
-            "uri" => "$uri",
+            "uri"  => "$uri",
             "page" => "$page_name"
         ];
     }
 
-    public static function post(string $link, $class, callable $fun)
+    public static function post(string $uri, $class, string $method, $form_data = false, $files = false)
     {
         self::$list[] = [
-//            "uri" => "$uri",
-//            "class" => "",
-//            "page" => "$page_name"
+           "uri"      => $uri,
+           "class"    => $class,
+           "method"   => $method,
+           "post"     => true,
+           "formdata" => $form_data,
+           "files"    => $files
         ];
     }
 
-    /**
-     *  метод отслеживания роута
-     * @return void
-     */
     public static function enable(): void
     {
+
         $query = '/'.$_GET['url'];
 
         foreach (self::$list as $route) {
-            if ($route['uri'] === $query) {
-                require_once 'views/pages/' . $route['page']. '.php' ;
-                die();
+            if ($route['uri'] === $query ) {
+                if(isset($route['post']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
+                    $action = new $route['class'];
+                    $method = $route['method'];
+
+                    if ($route['formdata'] && $route['files']) {
+                        $action->$method($_POST, $_FILES);
+                    }elseif ($route['formdata'] && !$route['files']) {
+                        $action->$method($_POST);
+                    }else {
+                        $action->$method();
+                    }
+                    die();
+                } else {
+                    require_once 'views/pages/' . $route['page']. '.php' ;
+                    die();
+                }
             }
         }
-        self::not_found_page();
+        self::error();
     }
 
-    private static function not_found_page(): void
+    public static function error(): void
     {
         require_once 'views/pages/error.php';
+    }
+
+    public static function redirect($uri) {
+        header('Location:'. $uri);
+//        require_once 'views/pages/'.$page.'.php' ;
+        die();
     }
 }

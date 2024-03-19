@@ -5,6 +5,7 @@ Thumbs.db
 /vendor/
 /node_modules/
 /public/assets/
+/uploads/avatars/
 
 .env
 .phpstorm.meta.php

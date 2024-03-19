@@ -1,7 +1,7 @@
 <header class="header">
     <div class="container header__container">
         <div class="header__title">
-            <h1><?php echo $_GET['url']; ?></h1>
+            <h1><?php echo $_GET['url'] ?? 'Home'; ?></h1>
         </div>
         <div class="header__nav">
             <nav>
