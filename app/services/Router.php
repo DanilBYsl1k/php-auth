@@ -26,9 +26,12 @@ class Router
         ];
     }
 
+    public static function get(string $uri, $class, string $method) {
+
+    }
+
     public static function enable(): void
     {
-
         $query = '/'.$_GET['url'];
 
         foreach (self::$list as $route) {
@@ -61,7 +64,6 @@ class Router
 
     public static function redirect($uri) {
         header('Location:'. $uri);
-//        require_once 'views/pages/'.$page.'.php' ;
         die();
     }
 }

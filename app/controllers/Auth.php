@@ -22,7 +22,7 @@ class Auth
         }
 
         $avatar = $files['avatar'];
-        $filename = time() . '_' . $avatar['name'];
+        $filename =  str_replace(array(' ', '#'), array('_', '_'), $avatar['name']);
         $path = "uploads/avatars/" . $filename;
 
         if (move_uploaded_file($avatar["tmp_name"], $path)) {
@@ -31,6 +31,7 @@ class Auth
             $user->__set('email', $email);
             $user->__set('username', $username);
             $user->__set('full_name' ,$full_name);
+            $user->__set('group' , 1);
             $user->__set('avatar', '/'.$path);
             $user->__set('password', password_hash($password, PASSWORD_DEFAULT));
 
@@ -52,8 +53,25 @@ class Auth
         }
 
         if(password_verify($password, $user->password)) {
-            $_SESSION["user_id"] = $user->id;
-            $_SESSION["group"] = $user->id;
+            session_start();
+            $_SESSION["user"] = [
+                "id" => $user->id,
+                "full_name" => $user->full_name,
+                "username" => $user->username,
+                "avatar" => $user->avatar,
+                "group" => $user->group,
+                "email" => $user->email,
+            ];
+
+            Router::redirect('/profile');
+        }else {
+            die('user not found');
         }
+    }
+
+    public function logout() {
+         unset($_SESSION['user']);
+
+         Router::redirect('/');
     }
 }

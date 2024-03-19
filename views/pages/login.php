@@ -14,10 +14,10 @@ use App\services\Page;
 <main>
     <section class="form">
         <div class="container form__container">
-            <form class="form-auth" action="">
+            <form class="form-auth" action="/auth/login" method="post" enctype="multipart/form-data">
                 <div class="input-wrapper">
-                    <label for="login">Login</label>
-                    <input type="text" name="login" placeholder="text" id="login">
+                    <label for="email">Login</label>
+                    <input type="email" name="email" placeholder="email" id="email">
                 </div>
                 <div class="input-wrapper">
                     <label for="password">Password</label>
