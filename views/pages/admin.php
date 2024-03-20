@@ -19,8 +19,6 @@ use App\services\Page;
         </div>
     </section>
 </main>
-<footer>
-
-</footer>
+<?php Page::part('footer'); ?>
 </body>
 </html>
